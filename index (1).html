@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Station Vélo'v – Bourg de Tassin</title>
+  <meta name="description" content="Projet citoyen pour l'installation d'une station Vélo'v au centre du bourg de Tassin-la-Demi-Lune">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #FAFBFA;
+      color: #2D2D2D;
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    header {
+      background-color: #09700A;
+      background-image: linear-gradient(135deg, #09700A 0%, #0a8a0b 50%, #09700A 100%);
+      color: white;
+      padding: 48px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
+      background-size: 30px 30px;
+      pointer-events: none;
+    }
+
+    .header-icon {
+      margin-bottom: 16px;
+    }
+
+    .header-icon svg {
+      width: 64px;
+      height: 64px;
+      fill: white;
+      opacity: 0.95;
+    }
+
+    header h1 {
+      margin: 0 0 12px 0;
+      font-size: 1.75rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      position: relative;
+    }
+
+    header p {
+      margin: 0;
+      font-size: 1.05rem;
+      opacity: 0.95;
+      position: relative;
+    }
+
+    main {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 32px 20px 48px;
+    }
+
+    .card {
+      background-color: #FFFFFF;
+      border-radius: 12px;
+      padding: 28px 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      border-left: 4px solid transparent;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(9, 112, 10, 0.12);
+      border-left-color: #09700A;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .card-icon {
+      width: 40px;
+      height: 40px;
+      background-color: #E8F5E9;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .card-icon svg {
+      width: 22px;
+      height: 22px;
+      fill: #09700A;
+    }
+
+    h2 {
+      color: #09700A;
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 0;
+      letter-spacing: -0.01em;
+    }
+
+    p {
+      margin: 0 0 16px 0;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 0;
+      list-style: none;
+    }
+
+    ul li {
+      margin-bottom: 14px;
+      padding-left: 32px;
+      position: relative;
+    }
+
+    ul li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 6px;
+      width: 20px;
+      height: 20px;
+      background-color: #E8F5E9;
+      border-radius: 50%;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%2309700A'%3E%3Cpath fill-rule='evenodd' d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z' clip-rule='evenodd'/%3E%3C/svg%3E");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 14px;
+    }
+
+    ul li:last-child {
+      margin-bottom: 0;
+    }
+
+    ol {
+      margin: 0;
+      padding-left: 0;
+      list-style: none;
+      counter-reset: steps;
+    }
+
+    ol li {
+      margin-bottom: 24px;
+      padding-left: 48px;
+      position: relative;
+      counter-increment: steps;
+    }
+
+    ol li::before {
+      content: counter(steps);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 32px;
+      height: 32px;
+      background-color: #09700A;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    ol li:last-child {
+      margin-bottom: 0;
+    }
+
+    .address {
+      display: inline-block;
+      background-color: #F0F7F0;
+      border: 1px solid #D4E8D4;
+      border-radius: 6px;
+      padding: 8px 14px;
+      margin-top: 8px;
+      font-weight: 500;
+      color: #09700A;
+    }
+
+    .option {
+      display: inline-block;
+      background-color: #F5F5F5;
+      border: 1px solid #E0E0E0;
+      border-radius: 6px;
+      padding: 8px 14px;
+      margin-top: 8px;
+      font-weight: 500;
+    }
+
+    .copyable-block {
+      position: relative;
+      background-color: #F8F9F8;
+      border: 1px solid #E2E6E2;
+      border-radius: 8px;
+      padding: 20px;
+      margin-top: 12px;
+      font-size: 0.92rem;
+      line-height: 1.65;
+    }
+
+    .copyable-text {
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    .copy-btn {
+      display: block;
+      width: 100%;
+      margin-top: 16px;
+      padding: 12px 16px;
+      background-color: #09700A;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .copy-btn:hover {
+      background-color: #075f08;
+    }
+
+    .copy-btn:active {
+      background-color: #054f06;
+    }
+
+    .copy-btn.copied {
+      background-color: #2E7D32;
+    }
+
+    .cta-section {
+      background-color: #09700A;
+      background-image: linear-gradient(135deg, #09700A 0%, #0a8a0b 50%, #09700A 100%);
+      border-radius: 12px;
+      padding: 40px 24px;
+      text-align: center;
+      margin-top: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px);
+      background-size: 24px 24px;
+      pointer-events: none;
+    }
+
+    .cta-icon {
+      margin-bottom: 16px;
+    }
+
+    .cta-icon svg {
+      width: 48px;
+      height: 48px;
+      fill: white;
+      opacity: 0.9;
+    }
+
+    .cta-section p {
+      color: white;
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background-color: white;
+      color: #09700A;
+      padding: 16px 32px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+      position: relative;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .cta-button:hover {
+      background-color: #F0F7F0;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .cta-button:active {
+      transform: translateY(0);
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.85rem;
+      color: #6B6B6B;
+      padding: 24px 20px 32px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 480px) {
+      header {
+        padding: 36px 20px;
+      }
+
+      header h1 {
+        font-size: 1.5rem;
+      }
+
+      .card {
+        padding: 24px 20px;
+      }
+
+      .cta-section {
+        padding: 32px 20px;
+      }
+
+      .cta-button {
+        display: block;
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-icon">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M15.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM5 12c-2.8 0-5 2.2-5 5s2.2 5 5 5 5-2.2 5-5-2.2-5-5-5zm0 8.5c-1.9 0-3.5-1.6-3.5-3.5s1.6-3.5 3.5-3.5 3.5 1.6 3.5 3.5-1.6 3.5-3.5 3.5zm5.8-10l2.4-2.4.8.8c1.3 1.3 3 2.1 5.1 2.1V9c-1.5 0-2.7-.6-3.6-1.5l-1.9-1.9c-.5-.4-1-.6-1.6-.6s-1.1.2-1.4.6L7.8 8.4c-.4.4-.6.9-.6 1.4 0 .6.2 1.1.6 1.4L11 14v5h2v-6.2l-2.2-2.3zM19 12c-2.8 0-5 2.2-5 5s2.2 5 5 5 5-2.2 5-5-2.2-5-5-5zm0 8.5c-1.9 0-3.5-1.6-3.5-3.5s1.6-3.5 3.5-3.5 3.5 1.6 3.5 3.5-1.6 3.5-3.5 3.5z"/>
+    </svg>
+  </div>
+  <h1>Station Vélo'v – Bourg de Tassin</h1>
+  <p>Favoriser les mobilités douces et les déplacements vélo + train</p>
+</header>
+
+<main>
+
+  <section class="card">
+    <div class="card-header">
+      <div class="card-icon">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+        </svg>
+      </div>
+      <h2>Le projet</h2>
+    </div>
+    <p>
+      Des habitants du bourg de Tassin proposent l'installation d'une station Vélo'v au centre du quartier. L'objectif : faciliter les déplacements quotidiens à vélo et renforcer l'intermodalité avec la gare de Tassin, pour des trajets combinés vélo–train plus accessibles.
+    </p>
+  </section>
+
+  <section class="card">
+    <div class="card-header">
+      <div class="card-icon">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+        </svg>
+      </div>
+      <h2>Pourquoi une station ici ?</h2>
+    </div>
+    <ul>
+      <li>La station Vélo'v la plus proche se situe à plus de 20 minutes à pied</li>
+      <li>Faciliter les déplacements combinés vélo et train</li>
+      <li>Un secteur déjà équipé en aménagements cyclables sécurisés</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <div class="card-header">
+      <div class="card-icon">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+        </svg>
+      </div>
+      <h2>Comment soutenir le projet ?</h2>
+    </div>
+    <p>Pour déposer une demande officielle auprès de la Métropole, suivez ces étapes :</p>
+
+    <ol>
+      <li>
+        Lorsque le formulaire vous demande où installer l'infrastructure, indiquez :
+        <br>
+        <span class="address">2, rue Professeur Deperet, 69160 Tassin-la-Demi-Lune</span>
+      </li>
+
+      <li>
+        À la question « Description de votre demande », cochez :
+        <br>
+        <span class="option">Un nouvel aménagement cyclable</span>
+      </li>
+
+      <li>
+        Dans le champ « Votre demande », copiez-collez le texte suivant :
+        <div class="copyable-block">
+          <div class="copyable-text" id="texte-demande">Madame, Monsieur,
+
+De nombreux habitants du bourg de Tassin souhaitent voir le réseau Vélo'v étendu au centre du bourg, afin de faciliter leurs déplacements quotidiens à vélo. La station la plus proche se situe aux Tuileries, à environ 20 minutes à pied. Le secteur bénéficie déjà de pistes cyclables et d'aménagements sécurisés.
+
+L'installation d'une nouvelle station à proximité de la nouvelle supérette Carrefour City, de l'école et de la gare de Tassin permettrait de rendre le service plus accessible, de favoriser les mobilités douces, d'encourager l'intermodalité avec le train et de soutenir la politique locale de développement durable.
+
+Cette proposition répond à un besoin réel des habitants. Je vous remercie de l'attention portée à cette demande.</div>
+          <button type="button" class="copy-btn" onclick="copyText()">Copier le texte</button>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section class="cta-section">
+    <div class="cta-icon">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+      </svg>
+    </div>
+    <p>Prêt à déposer votre demande ?</p>
+    <a href="https://demarches.toodego.com/sve/un-amenagement-cyclable/" class="cta-button" target="_blank" rel="noopener">
+      Accéder au formulaire de la Métropole
+    </a>
+  </section>
+
+</main>
+
+<footer>
+  <p>Initiative citoyenne – Bourg de Tassin-la-Demi-Lune</p>
+</footer>
+
+<script>
+  function copyText() {
+    var texte = document.getElementById('texte-demande').innerText;
+    var btn = document.querySelector('.copy-btn');
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(texte).then(function() {
+        btn.textContent = 'Texte copié !';
+        btn.classList.add('copied');
+        setTimeout(function() {
+          btn.textContent = 'Copier le texte';
+          btn.classList.remove('copied');
+        }, 2500);
+      }).catch(function() {
+        fallbackCopy(texte, btn);
+      });
+    } else {
+      fallbackCopy(texte, btn);
+    }
+  }
+
+  function fallbackCopy(texte, btn) {
+    var textarea = document.createElement('textarea');
+    textarea.value = texte;
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    document.body.appendChild(textarea);
+    textarea.focus();
+    textarea.select();
+
+    try {
+      document.execCommand('copy');
+      btn.textContent = 'Texte copié !';
+      btn.classList.add('copied');
+      setTimeout(function() {
+        btn.textContent = 'Copier le texte';
+        btn.classList.remove('copied');
+      }, 2500);
+    } catch (err) {
+      btn.textContent = 'Sélectionnez et copiez manuellement';
+      setTimeout(function() {
+        btn.textContent = 'Copier le texte';
+      }, 3000);
+    }
+
+    document.body.removeChild(textarea);
+  }
+</script>
+
+</body>
+</html>
